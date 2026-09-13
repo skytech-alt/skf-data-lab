@@ -1,0 +1,33 @@
+пусть sklearn = подключить_питон("sklearn")
+пусть np = подключить_питон("numpy")
+пусть train_test_split = sklearn.model_selection.train_test_split
+пусть LinearRegression = sklearn.linear_model.LinearRegression
+пусть RandomForestClassifier = sklearn.ensemble.RandomForestClassifier
+пусть accuracy_score = sklearn.metrics.accuracy_score
+пусть mean_squared_error = sklearn.metrics.mean_squared_error
+
+// Регрессия: предсказать число
+функция обучить_регрессию(данные, целевая_колонка, признаки = ничто) {
+    пусть X = данные.drop(columns=[целевая_колонка]) если признаки == ничто иначе данные[признаки]
+    пусть y = данные[целевая_колонка]
+    пусть X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    пусть модель = LinearRegression()
+    модель.fit(X_train, y_train)
+    пусть предсказания = модель.predict(X_test)
+    пусть ошибка = mean_squared_error(y_test, предсказания)
+    лог("MSE: " + ошибка)
+    вернуть модель
+}
+
+// Классификация: предсказать категорию
+функция обучить_классификатор(данные, целевая_колонка) {
+    пусть X = данные.drop(columns=[целевая_колонка])
+    пусть y = данные[целевая_колонка]
+    пусть X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    пусть модель = RandomForestClassifier()
+    модель.fit(X_train, y_train)
+    пусть предсказания = модель.predict(X_test)
+    пусть точность = accuracy_score(y_test, предсказания)
+    лог("Точность: " + точность)
+    вернуть модель
+}
