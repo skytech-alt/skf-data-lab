@@ -1,0 +1,32 @@
+пусть plt = подключить_питон("matplotlib.pyplot")
+
+// Линейный график
+функция линейный_график(данные, x, y, заголовок = "График") {
+    plt.figure(figsize=(10, 6))
+    plt.plot(данные[x], данные[y])
+    plt.title(заголовок)
+    plt.xlabel(x)
+    plt.ylabel(y)
+    plt.grid(истина)
+    plt.show()
+}
+
+// Гистограмма
+функция гистограмма(данные, колонка, заголовок = "Распределение") {
+    plt.figure(figsize=(10, 6))
+    plt.hist(данные[колонка], bins=20)
+    plt.title(заголовок)
+    plt.xlabel(колонка)
+    plt.ylabel("Частота")
+    plt.show()
+}
+
+// Тепловая карта корреляций
+функция корреляционная_карта(данные) {
+    пусть корреляции = данные.corr()
+    plt.figure(figsize=(12, 8))
+    plt.imshow(корреляции, cmap="coolwarm", interpolation="nearest")
+    plt.colorbar()
+    plt.title("Корреляционная матрица")
+    plt.show()
+}
