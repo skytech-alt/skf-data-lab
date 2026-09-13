@@ -1,0 +1,15 @@
+// Подключаем Python-мост для доступа к научным библиотекам
+пусть pd = подключить_питон("pandas")
+пусть np = подключить_питон("numpy")
+пусть sklearn = подключить_питон("sklearn")
+пусть plt = подключить_питон("matplotlib.pyplot")
+
+// Реэкспорт функций из подмодулей
+подтянуть "code/data_loader.skf"
+подтянуть "code/ml_models.skf"
+подтянуть "code/visualization.skf"
+
+// Быстрый доступ к версиям
+функция версия() {
+    вернуть "skf-data-lab 0.1.0 | pandas " + pd.__version__ + " | numpy " + np.__version__
+}
